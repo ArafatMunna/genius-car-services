@@ -8,6 +8,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../Shared/Loading/Loading";
 
 const SocialLogin = () => {
     const navigate = useNavigate();
@@ -16,6 +17,12 @@ const SocialLogin = () => {
         useSignInWithGithub(auth);
 
     let errorElement;
+    let pageLoading;
+
+    if (loading || loadingGithub) {
+        pageLoading = <Loading />;
+    }
+
     if (error || errorGithub) {
         errorElement = (
             <p className="text-danger">
@@ -32,6 +39,7 @@ const SocialLogin = () => {
 
     return (
         <div>
+            {pageLoading}
             <div className="d-flex align-items-center">
                 <div
                     style={{ height: "1px" }}
