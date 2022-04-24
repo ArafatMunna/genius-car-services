@@ -7,8 +7,9 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 
 const Login = () => {
     const emailRef = useRef("");
@@ -56,7 +57,8 @@ const Login = () => {
     };
 
     return (
-        <div className="contsiner w-50 mx-auto mt-2">
+        <div className="container w-50 mx-auto mt-2">
+            <PageTitle title="Login" />
             <h2 className="text-primary text-center">Please Login</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -105,7 +107,6 @@ const Login = () => {
                 </button>
             </p>
             <SocialLogin />
-            <ToastContainer />
         </div>
     );
 };
