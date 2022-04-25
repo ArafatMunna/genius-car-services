@@ -8,6 +8,7 @@ import {
 import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { async } from "@firebase/util";
+import useToken from "../../../hooks/useToken";
 
 const Register = () => {
     const [agree, setAgree] = useState(false);
@@ -21,17 +22,19 @@ const Register = () => {
     const [updateProfile, updating, updateProfileError] =
         useUpdateProfile(auth);
 
+    const [token] = useToken(user);
+
     let errorElement;
     if (error) {
         errorElement = <p className="text-danger">Error: {error?.message}</p>;
     }
 
     useEffect(() => {
-        if (user) {
-            console.log(user);
+        if (token) {
+            // console.log(user);
             navigate("/home");
         }
-    }, [user]);
+    }, [token]);
 
     const handleRegister = async (event) => {
         event.preventDefault();

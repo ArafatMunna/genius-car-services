@@ -38,7 +38,7 @@ const Checkout = () => {
         };
 
         axios
-            .post("http://localhost:5000/order", order)
+            .post("https://mysterious-coast-98724.herokuapp.com/order", order)
             .then((res) => {
                 const { data } = res;
                 if (data.insertedId) {

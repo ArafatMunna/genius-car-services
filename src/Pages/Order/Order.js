@@ -14,7 +14,7 @@ const Order = () => {
         const getOrders = async () => {
             const email = user?.email;
 
-            const url = `http://localhost:5000/order?email=${email}`;
+            const url = `https://mysterious-coast-98724.herokuapp.com/order?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
                 setOrders(data);
@@ -32,13 +32,20 @@ const Order = () => {
         getOrders();
 
         /*   axios
-            .get("http://localhost:5000/order")
+            .get("https://mysterious-coast-98724.herokuapp.com/order")
             .then((res) => setOrders(res.data))
             .catch((err) => console.log(err)); */
     }, [user]);
     return (
-        <div>
+        <div className="w-50 mx-auto">
             <h2>Your Orders: {orders?.length}</h2>
+            {orders.map((order) => (
+                <div key={order._id}>
+                    <p>
+                        {order.email} : {order.service}
+                    </p>
+                </div>
+            ))}
         </div>
     );
 };
